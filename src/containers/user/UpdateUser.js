@@ -27,7 +27,9 @@ function UpdateUser(props) {
   const [gender, setGender] = useState(data?.gender);
   const navigateScreen = useNavigate();
   const dispatch = useDispatch();
-  const token = userData && userData?.headers?.authorization;
+  // const token = userData && userData?.headers?.authorization;
+  const token = useSelector((state) => state.admin.userToken);
+
   const userID = userData?.data?.data?.id;
   const userInfo = useSelector((state) => state.admin.singleUserData);
 

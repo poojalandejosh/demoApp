@@ -30,7 +30,9 @@ function CustomerList() {
     const storeData = JSON.parse(window.localStorage.getItem("key"));
   }, []);
 
-  const token = adminData && adminData?.headers?.authorization;
+  // const token = adminData && adminData?.headers?.authorization;
+  const token = useSelector((state) => state.admin.token);
+
   // const [token, setToken] = useState("");
 
   useEffect(() => {

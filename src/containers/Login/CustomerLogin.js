@@ -4,7 +4,12 @@ import InputAndLabel from "../../components/InputAndLabel";
 import TextComponent from "../../components/TextComponent";
 import ButtonComponent from "../../components/ButtonComponent";
 import { useDispatch, useSelector } from "react-redux";
-import { clearErr, customerLogin } from "../../reduxStore/Actions";
+import {
+  clearErr,
+  customerLogin,
+  settingToken,
+  settingUserToken,
+} from "../../reduxStore/Actions";
 import { useNavigate } from "react-router-dom";
 import ErrorComponent from "../../components/ErrorComponent";
 
@@ -48,10 +53,21 @@ function CustomerLogin() {
     setEmail("");
     setPassword("");
   };
+
   useEffect(() => {
     if (token) {
-      window.localStorage.setItem("userKey", JSON.stringify(token));
+      window.localStorage.setItem("userkey", JSON.stringify(token));
+      window.localStorage.setItem(
+        "userData",
+        JSON.stringify(customerLoginData)
+      );
     }
+  }, [token]);
+
+  useEffect(() => {
+    let x = JSON.parse(window.localStorage.getItem("userkey"));
+    console.log("x..", x);
+    dispatch(settingUserToken(x));
   }, [token]);
 
   useEffect(() => {

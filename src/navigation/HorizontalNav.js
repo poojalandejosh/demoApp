@@ -10,7 +10,10 @@ function HorizontalNav() {
 
   const adminRole = adminData && adminData?.data?.data?.role_id;
   const userRole = userData && userData?.data?.data?.role_id;
+  const token = useSelector((state) => state.admin.token);
+  const userToken = useSelector((state) => state.admin.userToken);
 
+  console.log("token...", token, userToken);
   // useEffect(() => {
   //   const  = JSON.parse(window.localStorage.getItem("key"));
   //   console.log("storeData...", storeData);
@@ -36,7 +39,8 @@ function HorizontalNav() {
           // paddingRight: 10,
         }}
       >
-        {adminRole ? <AdminNav /> : userRole ? <CustomerNav /> : <LoginNav />}
+        {token ? <AdminNav /> : userToken ? <CustomerNav /> : <LoginNav />}
+        {/* <AdminNav /> : userRole ? <CustomerNav /> : <LoginNav />} */}
       </ul>
     </div>
   );
@@ -66,6 +70,7 @@ const AdminNav = () => {
   const dispatch = useDispatch();
 
   const logoutAdmin = () => {
+    window.localStorage.clear();
     dispatch(adminLogout());
   };
   return (
@@ -135,6 +140,7 @@ const CustomerNav = () => {
   const dispatch = useDispatch();
 
   const logoutcustomer = () => {
+    window.localStorage.clear();
     dispatch(customerLogout());
   };
   return (

@@ -2,10 +2,10 @@ import { Admin } from "./Type";
 
 const initialState = {
   singleTran: [],
-  adminloginData: [],
-  customerloginData: [],
+  adminloginData: JSON.parse(window.localStorage.getItem("adminData")),
+  customerloginData: JSON.parse(window.localStorage.getItem("userData")),
   customerList: [],
-  singleUserData: [],
+  singleUserData: JSON.parse(window.localStorage.getItem("userInfo")),
   transactionsData: [],
   loading: false,
   error: [],
@@ -14,6 +14,8 @@ const initialState = {
   createTransaction: [],
   allTransaction: [],
   createUserRes: [],
+  token: JSON.parse(window.localStorage.getItem("key")),
+  userToken: JSON.parse(window.localStorage.getItem("userkey")),
 };
 
 export const AdminReducer = (state = initialState, action) => {
@@ -239,6 +241,18 @@ export const AdminReducer = (state = initialState, action) => {
         loading: false,
       };
     }
+    case Admin.SET_TOKEN: {
+      return {
+        ...state,
+        token: action.payload,
+      };
+    }
+    case Admin.SET_USER_TOKEN: {
+      return {
+        ...state,
+        userToken: action.payload,
+      };
+    }
     case Admin.DELETE_SINGLE_USER: {
       let newListData = [...state?.customerList?.data];
       console.log("...state?.customerList", newListData);
@@ -273,6 +287,8 @@ export const AdminReducer = (state = initialState, action) => {
         createTransaction: [],
         allTransaction: [],
         createUserRes: [],
+        token: "",
+        userToken: "",
       };
     }
     case Admin.CUSTOMER_LOGOUT: {
@@ -290,6 +306,8 @@ export const AdminReducer = (state = initialState, action) => {
         createTransaction: [],
         allTransaction: [],
         createUserRes: [],
+        token: "",
+        userToken: "",
       };
     }
     default:

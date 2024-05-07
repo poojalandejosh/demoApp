@@ -7,7 +7,9 @@ import { userInfoStyle } from "./UserStyles";
 
 const UserInfo = () => {
   const userData = useSelector((state) => state.admin.customerloginData);
-  const token = userData && userData?.headers?.authorization;
+  // const token = userData && userData?.headers?.authorization;
+  const token = useSelector((state) => state.admin.userToken);
+  console.log("token,,,,,", token);
   const dispatch = useDispatch();
   const userID = userData?.data?.data?.id;
   const data = useSelector((state) => state.admin.singleUserData);
@@ -17,6 +19,11 @@ const UserInfo = () => {
     dispatch(getSingleCustomer(userID, token));
   }, []);
 
+  useEffect(() => {
+    if (token) {
+      window.localStorage.setItem("userInfo", JSON.stringify(data));
+    }
+  }, [token]);
   return (
     <div style={userInfoStyle.container}>
       <div style={userInfoStyle.titleStyleView}>

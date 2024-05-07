@@ -11,7 +11,8 @@ import { transactionHistoryStyle } from "./UserStyles";
 function TransactionHistory() {
   const dispatch = useDispatch();
   const userData = useSelector((state) => state.admin.customerloginData);
-  const token = userData && userData?.headers?.authorization;
+  // const token = userData && userData?.headers?.authorization;
+  const token = useSelector((state) => state.admin.userToken);
 
   const userID = userData?.data?.data?.id;
   const error = useSelector((state) => state.admin.error);

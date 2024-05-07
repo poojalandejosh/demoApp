@@ -8,11 +8,11 @@ import storage from "redux-persist/lib/storage";
 const rootReducers = combineReducers({
   admin: AdminReducer,
 });
-const persistConfig = {
-  key: "root",
-  storage,
-};
+// const persistConfig = {
+//   key: "root",
+//   storage,
+// };
 
-const persistedReducer = persistReducer(persistConfig, rootReducers);
+// const persistedReducer = persistReducer(persistConfig, rootReducers);
 
-export const store = createStore(persistedReducer, applyMiddleware(thunk));
+export const store = createStore(rootReducers, applyMiddleware(thunk));

@@ -222,6 +222,18 @@ export const clearErr = () => {
     type: Admin.CLEAR_ERR,
   };
 };
+export const settingToken = (payload) => {
+  return {
+    type: Admin.SET_TOKEN,
+    payload,
+  };
+};
+export const settingUserToken = (payload) => {
+  return {
+    type: Admin.SET_USER_TOKEN,
+    payload,
+  };
+};
 
 export const adminLogin = (data) => {
   return (dispatch) => {

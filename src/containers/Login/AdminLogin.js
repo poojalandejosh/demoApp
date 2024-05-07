@@ -4,7 +4,7 @@ import InputAndLabel from "../../components/InputAndLabel";
 import ButtonComponent from "../../components/ButtonComponent";
 import TextComponent from "../../components/TextComponent";
 import { useDispatch, useSelector } from "react-redux";
-import { adminLogin, clearErr } from "../../reduxStore/Actions";
+import { adminLogin, clearErr, settingToken } from "../../reduxStore/Actions";
 import { Link, useNavigate } from "react-router-dom";
 import LoadingComponent from "../../components/LoadingComponent";
 import ErrorComponent from "../../components/ErrorComponent";
@@ -57,11 +57,13 @@ function AdminLogin() {
   useEffect(() => {
     if (token) {
       window.localStorage.setItem("key", JSON.stringify(token));
+      window.localStorage.setItem("adminData", JSON.stringify(adminData));
     }
   }, [token]);
 
   useEffect(() => {
     let x = JSON.parse(window.localStorage.getItem("key"));
+    dispatch(settingToken(x));
   }, [token]);
 
   useEffect(() => {

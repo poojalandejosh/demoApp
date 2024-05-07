@@ -13,7 +13,9 @@ function TransactionRecord() {
   const dispatch = useDispatch();
   const transactionData = useSelector((state) => state.admin.transactionsData);
   const adminData = useSelector((state) => state.admin.adminloginData);
-  const token = adminData && adminData?.headers?.authorization;
+  // const token = adminData && adminData?.headers?.authorization;
+  const token = useSelector((state) => state.admin.token);
+
   const error = useSelector((state) => state.admin.error);
 
   const searchHandler = () => {

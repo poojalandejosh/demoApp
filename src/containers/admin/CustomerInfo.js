@@ -11,7 +11,9 @@ function CustomerInfo(props) {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.admin.singleUserData);
   const adminData = useSelector((state) => state.admin.adminloginData);
-  const token = adminData && adminData?.headers?.authorization;
+  // const token = adminData && adminData?.headers?.authorization;
+  const token = useSelector((state) => state.admin.token);
+
   const error = useSelector((state) => state.admin.error);
 
   useEffect(() => {
