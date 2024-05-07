@@ -1,23 +1,22 @@
 import logo from './logo.svg';
 import './App.css';
+import Login from "./containers/Login/CustomerLogin";
+import EntryScreen from "./containers/Login/EntryScreen";
+import RootNav from "./navigation/RootNav";
+import { useEffect, useState } from "react";
 
 function App() {
+  const [key, setKey] = useState("");
+  const [userToken, setUserToken] = useState("");
+  console.log("ok");
+  useEffect(() => {
+    console.log("pooj");
+    setKey(JSON.parse(window.localStorage.getItem("key")));
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div style={{ padding: "20" }}>
+      <RootNav />
     </div>
   );
 }

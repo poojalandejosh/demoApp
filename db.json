@@ -1,0 +1,162 @@
+{
+  "Customers": [
+    {
+      "id": 1,
+      "name": "sushmita sinha",
+      "email": "sushmita@gmail.com",
+      "mobile": 9856432312,
+      "profile": "Analysing and debugging code",
+      "amount": 788776,
+      "location": "pune"
+    },
+    {
+      "id": 2,
+      "name": "Minakshi kapoor",
+      "email": "minakshi@gmail.com",
+      "mobile": 679863272,
+      "profile": "Producing clean, efficient code based on specifications",
+      "amount": 888888,
+      "location": "Mumbai"
+    },
+    {
+      "id": 3,
+      "name": "kanak rathod",
+      "email": "kanak@gmail.com",
+      "mobile": 8098675434,
+      "profile": "Testing and deploying programs and systems",
+      "amount": 500000,
+      "location": "Delhi"
+    },
+    {
+      "id": 4,
+      "name": "mangesh ramdu",
+      "email": "mangesh@gmail.com",
+      "mobile": 8796451123,
+      "profile": "Producing efficient and elegant code based on requirements",
+      "amount": 609949,
+      "location": "pune"
+    },
+    {
+      "id": 5,
+      "name": "sailesh kande",
+      "email": "sailesh@gmail.com",
+      "mobile": 9856432312,
+      "profile": "Testing and deploying programs and applications",
+      "amount": 788776,
+      "location": "pune"
+    },
+    {
+      "id": 6,
+      "name": "sanchi shardu",
+      "email": "sanchi@gmail.com",
+      "mobile": 9856432312,
+      "profile": "To get you started, here are some tips for creating an effective job description.",
+      "amount": 788776,
+      "location": "Aurangabad"
+    },
+    {
+      "id": 7,
+      "name": "kusum rajput",
+      "email": "kusum@gmail.com",
+      "mobile": 9856432312,
+      "profile": "shjss hsijs jsjs bjs",
+      "amount": 788776,
+      "location": "Banglore"
+    },
+    {
+      "id": 8,
+      "name": "vaibhav jagtab",
+      "email": "vaibhav@gmail.com",
+      "mobile": 9856432312,
+      "profile": "shjss hsijs jsjs bjs",
+      "amount": 788776,
+      "location": "Dehradun"
+    },
+    {
+      "id": 9,
+      "name": "shubham vishwkarma",
+      "email": "shubham@gmail.com",
+      "mobile": 9856432312,
+      "profile": "shjss hsijs jsjs bjs",
+      "amount": 788776,
+      "location": "South"
+    },
+    {
+      "id": 10,
+      "name": "Ravibhau maganti",
+      "email": "sushmita@gmail.com",
+      "mobile": 9856432312,
+      "profile": "shjss hsijs jsjs bjs",
+      "amount": 788776,
+      "location": "pune"
+    },
+    {
+      "id": 11,
+      "name": "sushmita sinha",
+      "email": "sushmita@gmail.com",
+      "mobile": 9856432312,
+      "profile": "shjss hsijs jsjs bjs",
+      "amount": 788776,
+      "location": "pune"
+    }
+  ],
+
+  "customerList": [
+    {
+      "id": 1,
+      "email": "user1@gmail.com",
+      "created_at": "2024-04-26T12:23:19.484Z",
+      "updated_at": "2024-04-26T12:23:19.484Z",
+      "jti": "3ba10d5c-eb6e-4eab-8b3d-7ac9eabd67b7",
+      "first_name": "user",
+      "last_name": "user",
+      "contact_no": "8907654321",
+      "address": "Pune",
+      "dob": "2000-01-01",
+      "gender": null,
+      "role_id": 1
+    },
+    {
+      "id": 2,
+      "email": "user2@gmail.com",
+      "created_at": "2024-04-26T12:23:19.484Z",
+      "updated_at": "2024-04-26T12:23:19.484Z",
+      "jti": "3ba10d5c-eb6e-4eab-8b3d-7ac9eabd67b7",
+      "first_name": "user2",
+      "last_name": "user2",
+      "contact_no": "8907654321",
+      "address": "Mumbai",
+      "dob": "2000-01-01",
+      "gender": "Female",
+      "role_id": 2
+    },
+    {
+      "id": 3,
+      "email": "user3@gmail.com",
+      "created_at": "2024-04-26T12:23:19.484Z",
+      "updated_at": "2024-04-26T12:23:19.484Z",
+      "jti": "3ba10d5c-eb6e-4eab-8b3d-7ac9eabd67b7",
+      "first_name": "user3",
+      "last_name": "user3",
+      "contact_no": "8907654321",
+      "address": "Haidrabad",
+      "dob": "2000-01-01",
+      "gender": "Female",
+      "role_id": 3
+    },
+    {
+      "id": 4,
+      "email": "user4@gmail.com",
+      "created_at": "2024-04-26T12:23:19.484Z",
+      "updated_at": "2024-04-26T12:23:19.484Z",
+      "jti": "3ba10d5c-eb6e-4eab-8b3d-7ac9eabd67b7",
+      "first_name": "user4",
+      "last_name": "user4",
+      "contact_no": "8907654321",
+      "address": "Nashik",
+      "dob": "2000-01-01",
+      "gender": "Male",
+      "role_id": 4
+    }
+  ]
+}
