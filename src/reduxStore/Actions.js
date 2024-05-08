@@ -427,11 +427,9 @@ export const craeteUserAction = (token, data) => {
     })
       .then((res) => {
         let data = res.data;
-        console.log("create user res...", data);
         dispatch(createUserSucess(data));
       })
       .catch((err) => {
-        console.log("create err...", err);
         dispatch(createUserFailure(err));
       });
   };

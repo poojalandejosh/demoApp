@@ -43,6 +43,7 @@ export const transactionCardStyle = {
     border: "1px solid rgba(0, 0, 0, 0.05)",
     borderRadius: 5,
     margin: 10,
+    padding: 10,
   },
   firstRow: {
     flexDirection: "row",

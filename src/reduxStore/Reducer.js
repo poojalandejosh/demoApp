@@ -255,7 +255,6 @@ export const AdminReducer = (state = initialState, action) => {
     }
     case Admin.DELETE_SINGLE_USER: {
       let newListData = [...state?.customerList?.data];
-      console.log("...state?.customerList", newListData);
 
       let newDeleteData = newListData?.filter((itm) => {
         return newListData.indexOf(itm) !== action.payload;

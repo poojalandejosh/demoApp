@@ -42,3 +42,27 @@ export const transactionRecordStyle = {
     alignItems: "center",
   },
 };
+export const createUserStyle = {
+  container: {
+    display: "flex",
+    flexDirection: "column",
+    marginLeft: "auto",
+    marginRight: "auto",
+    width: "70%",
+    justifyContent: "center",
+  },
+  title: {
+    marginTop: 30,
+  },
+  formStyle: {
+    flexDirection: "column",
+    display: "flex",
+    marginLeft: 20,
+    marginRight: 20,
+    marginTop: 20,
+  },
+  labelStyle: {
+    marginBottom: 5,
+    marginTop: 5,
+  },
+};

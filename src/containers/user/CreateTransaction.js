@@ -13,10 +13,7 @@ import { createTransactionStyle } from "./UserStyles";
 function CreateTransaction() {
   const userData = useSelector((state) => state.admin.customerloginData);
   const createData = useSelector((state) => state.admin.createTransaction);
-
-  // const token = userData && userData?.headers?.authorization;
   const token = useSelector((state) => state.admin.userToken);
-
   const dispatch = useDispatch();
   const [value, setValue] = React.useState("credit");
   const data = userData && userData?.data?.data;

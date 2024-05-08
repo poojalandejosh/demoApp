@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import InputAndLabel from "../../components/InputAndLabel";
 import { useDispatch, useSelector } from "react-redux";
 import { clearErr, getTransaction } from "../../reduxStore/Actions";
@@ -12,11 +12,7 @@ function TransactionRecord() {
   const [custId, setCustId] = useState("");
   const dispatch = useDispatch();
   const transactionData = useSelector((state) => state.admin.transactionsData);
-  const adminData = useSelector((state) => state.admin.adminloginData);
-  // const token = adminData && adminData?.headers?.authorization;
   const token = useSelector((state) => state.admin.token);
-
-  const error = useSelector((state) => state.admin.error);
 
   const searchHandler = () => {
     dispatch(getTransaction(custId, token));

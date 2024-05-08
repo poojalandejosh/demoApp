@@ -109,6 +109,7 @@ function CustomerLogin() {
               className="form-control border-0  border-bottom border-light bg-transparent  "
             >
               <Field
+                type={showPassword ? "text" : "password"}
                 name="password"
                 className="form-control border-0 shadow-none bg-transparent text-light h-25 "
               />

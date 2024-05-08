@@ -1,23 +1,15 @@
 import React, { useEffect, useState } from "react";
 import CustomerCard from "../../components/CustomerCard";
 import TextComponent from "../../components/TextComponent";
-import {
-  clearErr,
-  deleteCustomer,
-  deleteUser,
-  getCustomerList,
-} from "../../reduxStore/Actions";
+import { deleteUser, getCustomerList } from "../../reduxStore/Actions";
 import { useDispatch, useSelector } from "react-redux";
 import LoadingComponent from "../../components/LoadingComponent";
 import DataNotFoundComponent from "../../components/DataNotFoundComponent";
 import InputAndLabel from "../../components/InputAndLabel";
 import { transactionRecordStyle } from "./AdminStyle";
-import ErrorComponent from "../../components/ErrorComponent";
 
 function CustomerList() {
   const dispatch = useDispatch();
-  const adminData = useSelector((state) => state.admin.adminloginData);
-  const error = useSelector((state) => state.admin.error);
   const customerList = useSelector((state) => state.admin.customerList);
   const [searchData, setSearchData] = useState(customerList);
   const [inputVal, setInputVal] = useState("");
@@ -26,14 +18,7 @@ function CustomerList() {
     setSearchData(customerList);
   }, [customerList]);
 
-  useEffect(() => {
-    const storeData = JSON.parse(window.localStorage.getItem("key"));
-  }, []);
-
-  // const token = adminData && adminData?.headers?.authorization;
   const token = useSelector((state) => state.admin.token);
-
-  // const [token, setToken] = useState("");
 
   useEffect(() => {
     if (token) {
@@ -82,14 +67,7 @@ function CustomerList() {
         />
       ) : null}
       <DataNotFoundComponent data={searchData} />
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          backgroundColor: "white",
-        }}
-      ></div>
+
       {searchData &&
         searchData?.map((data, ind) => {
           return (

@@ -3,44 +3,15 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { adminLogout, customerLogout } from "../reduxStore/Actions";
 import { IoMdLogOut } from "react-icons/io";
-
+import { styles } from "./NavStyle";
 function HorizontalNav() {
-  const adminData = useSelector((state) => state.admin.adminloginData);
-  const userData = useSelector((state) => state.admin.customerloginData);
-
-  const adminRole = adminData && adminData?.data?.data?.role_id;
-  const userRole = userData && userData?.data?.data?.role_id;
   const token = useSelector((state) => state.admin.token);
   const userToken = useSelector((state) => state.admin.userToken);
 
-  console.log("token...", token, userToken);
-  // useEffect(() => {
-  //   const  = JSON.parse(window.localStorage.getItem("key"));
-  //   console.log("storeData...", storeData);
-  // }, []);
-
   return (
-    <div
-      style={{
-        maxWidth: "100%",
-      }}
-    >
-      <ul
-        style={{
-          display: "flex",
-          flexDirection: "row",
-          listStyleType: "none",
-          paddingBottom: 5,
-          margin: 0,
-          flexDirection: "row",
-          alignItems: "center",
-          backgroundColor: "rgba(0, 0, 0, 0.5)",
-
-          // paddingRight: 10,
-        }}
-      >
+    <div style={styles.container}>
+      <ul style={styles.unOrderList}>
         {token ? <AdminNav /> : userToken ? <CustomerNav /> : <LoginNav />}
-        {/* <AdminNav /> : userRole ? <CustomerNav /> : <LoginNav />} */}
       </ul>
     </div>
   );
@@ -51,15 +22,8 @@ export default HorizontalNav;
 const LoginNav = () => {
   return (
     <div>
-      <li style={{ padding: 15 }}>
-        <Link
-          style={{
-            textDecoration: "none",
-            textDecorationColor: "black",
-            color: "white",
-          }}
-          to="/"
-        >
+      <li style={styles.loginView}>
+        <Link style={styles.loginLink} to="/">
           Login
         </Link>
       </li>
@@ -75,59 +39,24 @@ const AdminNav = () => {
   };
   return (
     <>
-      <div
-        style={{
-          // backgroundColor: "rgba(0, 0, 0, 0.5)",
-          display: "flex",
-          flexDirection: "row",
-        }}
-      >
-        <li style={{ padding: 15 }}>
-          <Link
-            style={{
-              textDecoration: "none",
-              textDecorationColor: "black",
-              color: "white",
-            }}
-            to="/Customer List"
-          >
+      <div style={styles.adminView}>
+        <li style={styles.paddingStyle}>
+          <Link style={styles.linkStyle} to="/Customer List">
             Customer List
           </Link>
         </li>
-        <li style={{ padding: 15 }}>
-          <Link
-            style={{
-              textDecoration: "none",
-              textDecorationColor: "black",
-              color: "white",
-            }}
-            to="Transaction"
-          >
+        <li style={styles.paddingStyle}>
+          <Link style={styles.linkStyle} to="Transaction">
             Transaction
           </Link>
         </li>
-        <li style={{ paddingTop: 16, paddingLeft: 15 }}>
-          <Link
-            style={{
-              textDecoration: "none",
-              textDecorationColor: "black",
-              color: "white",
-            }}
-            to="/Create User"
-          >
+        <li style={styles.bottomStyle}>
+          <Link style={styles.linkStyle} to="/Create User">
             create user
           </Link>
         </li>
-        <li style={{ paddingTop: 16, paddingLeft: 15 }}>
-          <Link
-            style={{
-              textDecoration: "none",
-              textDecorationColor: "black",
-              color: "white",
-            }}
-            to="/"
-            onClick={() => logoutAdmin()}
-          >
+        <li style={styles.bottomStyle}>
+          <Link style={styles.linkStyle} to="/" onClick={() => logoutAdmin()}>
             <IoMdLogOut size={20} />
           </Link>
         </li>
@@ -145,71 +74,25 @@ const CustomerNav = () => {
   };
   return (
     <>
-      <div
-        style={{
-          display: "flex",
-          // backgroundColor: "rgba(0, 0, 0, 0.5)",
-          paddingRight: 10,
-          // width: "100vh",
-          // maxWidth: "100%",
-          flexDirection: "row",
-        }}
-      >
-        <li style={{ padding: 15 }}>
-          <Link
-            style={{
-              textDecoration: "none",
-              textDecorationColor: "black",
-              color: "white",
-            }}
-            to="UserInfo"
-          >
+      <div style={styles.customerNavView}>
+        <li style={styles.paddingStyle}>
+          <Link style={styles.linkStyle} to="UserInfo">
             Profile
           </Link>
         </li>
-        {/* <li style={{ padding: 20 }}>
-        <Link
-          style={{
-            textDecoration: "none",
-            textDecorationColor: "black",
-            color: "white",
-          }}
-          to="/Update user"
-        >
-          Update Profile
-        </Link>
-      </li> */}
-        <li style={{ padding: 15 }}>
-          <Link
-            style={{
-              textDecoration: "none",
-              textDecorationColor: "black",
-              color: "white",
-            }}
-            to="/Make Transaction"
-          >
+        <li style={styles.paddingStyle}>
+          <Link style={styles.linkStyle} to="/Make Transaction">
             Transaction
           </Link>
         </li>
-        <li style={{ padding: 15 }}>
-          <Link
-            style={{
-              textDecoration: "none",
-              textDecorationColor: "black",
-              color: "white",
-            }}
-            to="/Transaction history"
-          >
+        <li style={styles.paddingStyle}>
+          <Link style={styles.linkStyle} to="/Transaction history">
             Transaction History
           </Link>
         </li>
-        <li style={{ paddingTop: 16, paddingLeft: 15 }}>
+        <li style={styles.bottomStyle}>
           <Link
-            style={{
-              textDecoration: "none",
-              textDecorationColor: "black",
-              color: "white",
-            }}
+            style={styles.linkStyle}
             to="/"
             onClick={() => logoutcustomer()}
           >

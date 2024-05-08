@@ -15,7 +15,6 @@ import { updateUserStyle } from "./UserStyles";
 function UpdateUser(props) {
   const userData = useSelector((state) => state.admin.customerloginData);
   const data = useSelector((state) => state.admin.singleUserData);
-
   const [firstName, setFirstname] = useState(data?.first_name);
   const [firstNameErr, setFirstnameErr] = useState("");
   const [lastName, setLastName] = useState(data?.last_name);
@@ -27,9 +26,7 @@ function UpdateUser(props) {
   const [gender, setGender] = useState(data?.gender);
   const navigateScreen = useNavigate();
   const dispatch = useDispatch();
-  // const token = userData && userData?.headers?.authorization;
   const token = useSelector((state) => state.admin.userToken);
-
   const userID = userData?.data?.data?.id;
   const userInfo = useSelector((state) => state.admin.singleUserData);
 
@@ -101,7 +98,6 @@ function UpdateUser(props) {
           textAlign="left"
           fontSize={14}
           fontWeight="normal"
-          //   fontStyle="inherit"
         />
       )}
       <InputAndLabel

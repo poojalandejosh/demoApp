@@ -1,19 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import TextComponent from "../../components/TextComponent";
 import { Link } from "react-router-dom";
-import { clearErr, getSingleCustomer } from "../../reduxStore/Actions";
+import { getSingleCustomer } from "../../reduxStore/Actions";
 import { userInfoStyle } from "./UserStyles";
 
 const UserInfo = () => {
   const userData = useSelector((state) => state.admin.customerloginData);
-  // const token = userData && userData?.headers?.authorization;
   const token = useSelector((state) => state.admin.userToken);
-  console.log("token,,,,,", token);
   const dispatch = useDispatch();
   const userID = userData?.data?.data?.id;
   const data = useSelector((state) => state.admin.singleUserData);
-  const error = useSelector((state) => state.admin.error);
 
   useEffect(() => {
     dispatch(getSingleCustomer(userID, token));

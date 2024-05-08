@@ -8,22 +8,16 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import TextComponent from "../../components/TextComponent";
 import InputAndLabel from "../../components/InputAndLabel";
-import { customerInfoStyle } from "./AdminStyle";
-import { styles } from "../Login/LoginStyle";
+import { createUserStyle, customerInfoStyle } from "./AdminStyle";
 import ButtonComponent from "../../components/ButtonComponent";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import * as yup from "yup";
+import { styles } from "../Login/LoginStyle";
 
 function CreateUser(props) {
   const { id } = useParams();
   const dispatch = useDispatch();
-  const createUser = useSelector((state) => state.admin.createUserRes);
-  const adminData = useSelector((state) => state.admin.adminloginData);
-  // const token = adminData && adminData?.headers?.authorization;
   const token = useSelector((state) => state.admin.token);
-  console.log("adminToken....", token);
-
-  const error = useSelector((state) => state.admin.error);
   const navigateScreen = useNavigate();
 
   const initialValues = {
@@ -72,21 +66,12 @@ function CreateUser(props) {
   };
 
   return (
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        marginLeft: "auto",
-        marginRight: "auto",
-        width: "70%",
-        justifyContent: "center",
-      }}
-    >
-      <div style={{ marginTop: 30 }}>
+    <div style={createUserStyle.container}>
+      <div style={createUserStyle.title}>
         <TextComponent
           fontFamily="fantasy"
           color="black"
-          text="Customer info"
+          text="Customer Information"
           textAlign="center"
           fontSize={20}
           fontWeight="bolder"
@@ -101,19 +86,8 @@ function CreateUser(props) {
         validationSchema={validationSchema}
       >
         {({ error, touches }) => (
-          <Form
-            style={{
-              flexDirection: "column",
-              display: "flex",
-              marginLeft: 20,
-              marginRight: 20,
-              marginTop: 20,
-            }}
-          >
-            <label
-              style={{ marginBottom: 5, marginTop: 5 }}
-              htmlFor="first_name"
-            >
+          <Form style={createUserStyle.formStyle}>
+            <label style={createUserStyle.labelStyle} htmlFor="first_name">
               First Name
             </label>
 
@@ -121,118 +95,112 @@ function CreateUser(props) {
               name="first_name"
               className="form-control border-0 shadow-none bg-light  text-dark border-bottom border-dark"
             />
-            <div style={{ marginTop: 5, marginBottom: 5 }}>
+            <div style={createUserStyle.labelStyle}>
               <ErrorMessage
                 name="first_name"
                 component={"div"}
                 className="text-danger"
               />
             </div>
-            <label
-              style={{ marginBottom: 5, marginTop: 5 }}
-              htmlFor="last_name"
-            >
+            <label style={createUserStyle.labelStyle} htmlFor="last_name">
               Last Name
             </label>
             <Field
               name="last_name"
               className="form-control border-0 shadow-none bg-light  text-dark border-bottom border-dark"
             />
-            <div style={{ marginBottom: 5, marginTop: 5 }}>
+            <div style={createUserStyle.labelStyle}>
               <ErrorMessage
                 name="last_name"
                 component={"div"}
                 className="text-danger"
               />
             </div>
-            <label style={{ marginBottom: 5, marginTop: 5 }} htmlFor="assignee">
+            <label style={createUserStyle.labelStyle} htmlFor="assignee">
               Email
             </label>
             <Field
               name="email"
               className="form-control border-0 shadow-none bg-light  text-dark border-bottom border-dark"
             />
-            <div style={{ marginBottom: 5, marginTop: 5 }}>
+            <div style={createUserStyle.labelStyle}>
               <ErrorMessage
                 name="email"
                 component={"div"}
                 className="text-danger"
               />
             </div>
-            <label style={{ marginBottom: 5, marginTop: 5 }} htmlFor="due_date">
+            <label style={createUserStyle.labelStyle} htmlFor="due_date">
               Password
             </label>
             <Field
               name="password"
               className="form-control border-0 shadow-none bg-light  text-dark border-bottom border-dark"
             />
-            <div style={{ marginBottom: 5, marginTop: 5 }}>
+            <div style={createUserStyle.labelStyle}>
               <ErrorMessage
                 name="password"
                 component={"div"}
                 className="text-danger"
               />
             </div>
-            <label style={{ marginBottom: 5, marginTop: 5 }} htmlFor="due_date">
+            <label style={createUserStyle.labelStyle} htmlFor="due_date">
               Address
             </label>
             <Field
               name="address"
               className="form-control border-0 shadow-none bg-light  text-dark border-bottom border-dark"
             />
-            <div style={{ marginBottom: 5, marginTop: 5 }}>
+            <div style={createUserStyle.labelStyle}>
               <ErrorMessage
                 name="address"
                 component={"div"}
                 className="text-danger"
               />
             </div>
-            <label style={{ marginBottom: 5, marginTop: 5 }} htmlFor="due_date">
+            <label style={createUserStyle.labelStyle} htmlFor="due_date">
               Date of Birth
             </label>
             <Field
               name="dob"
               className="form-control border-0 shadow-none bg-light  text-dark border-bottom border-dark"
             />
-            <div style={{ marginBottom: 5, marginTop: 5 }}>
+            <div style={createUserStyle.labelStyle}>
               <ErrorMessage
                 name="dob"
                 component={"div"}
                 className="text-danger"
               />
             </div>
-            <label style={{ marginBottom: 5, marginTop: 5 }} htmlFor="due_date">
+            <label style={createUserStyle.labelStyle} htmlFor="due_date">
               Gender
             </label>
             <Field
               name="gender"
               className="form-control border-0 shadow-none bg-light  text-dark border-bottom border-dark"
             />
-            <div style={{ marginBottom: 5, marginTop: 5 }}>
+            <div style={createUserStyle.labelStyle}>
               <ErrorMessage
                 name="gender"
                 component={"div"}
                 className="text-danger"
               />
             </div>
-            <label style={{ marginBottom: 5, marginTop: 5 }} htmlFor="role_id">
+            <label style={createUserStyle.labelStyle} htmlFor="role_id">
               Role Id
             </label>
             <Field
               name="role_id"
               className="form-control border-0 shadow-none bg-light  text-dark border-bottom border-dark"
             />
-            <div style={{ marginBottom: 5, marginTop: 5 }}>
+            <div style={createUserStyle.labelStyle}>
               <ErrorMessage
                 name="role_id"
                 component={"div"}
                 className="text-danger"
               />
             </div>
-            <label
-              style={{ marginBottom: 5, marginTop: 5 }}
-              htmlFor="contact_no"
-            >
+            <label style={createUserStyle.labelStyle} htmlFor="contact_no">
               Phone Number
             </label>
             <Field

@@ -38,7 +38,7 @@ function CustomerInfo(props) {
             labelName="Name"
             type="text"
             alignItems="start"
-            value={`${user.first_name} ${user.last_name}`}
+            value={`${user?.first_name} ${user?.last_name}`}
             borderBottom="1px solid rgb(128, 128, 128)"
             width="80%"
           />
@@ -49,7 +49,7 @@ function CustomerInfo(props) {
             labelName="Email"
             type="text"
             alignItems="start"
-            value={user.email}
+            value={user?.email}
             borderBottom="1px solid rgb(128, 128, 128)"
             width="80%"
           />
@@ -59,7 +59,7 @@ function CustomerInfo(props) {
             labelName="Contact"
             type="text"
             alignItems="start"
-            value={user.contact_no}
+            value={user?.contact_no}
             borderBottom="1px solid rgb(128, 128, 128)"
             width="80%"
           />
@@ -69,7 +69,7 @@ function CustomerInfo(props) {
             labelName="Address"
             type="text"
             alignItems="start"
-            value={user.address}
+            value={user?.address}
             borderBottom="1px solid rgb(128, 128, 128)"
             width="80%"
           />
@@ -79,7 +79,7 @@ function CustomerInfo(props) {
             labelName="Date of Birth"
             type="text"
             alignItems="start"
-            value={user.dob}
+            value={user?.dob}
             borderBottom="1px solid rgb(128, 128, 128)"
             width="80%"
           />
@@ -89,7 +89,7 @@ function CustomerInfo(props) {
             labelName="Gender"
             type="text"
             alignItems="start"
-            value={user.gender}
+            value={user?.gender}
             borderBottom="1px solid rgb(128, 128, 128)"
             width="80%"
           />
