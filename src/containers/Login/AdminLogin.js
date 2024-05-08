@@ -1,56 +1,36 @@
 import React, { useEffect, useState } from "react";
 import { styles } from "./LoginStyle";
-import InputAndLabel from "../../components/InputAndLabel";
 import ButtonComponent from "../../components/ButtonComponent";
-import TextComponent from "../../components/TextComponent";
 import { useDispatch, useSelector } from "react-redux";
-import { adminLogin, clearErr, settingToken } from "../../reduxStore/Actions";
-import { Link, useNavigate } from "react-router-dom";
-import LoadingComponent from "../../components/LoadingComponent";
-import ErrorComponent from "../../components/ErrorComponent";
-import Popup from "reactjs-popup";
+import { adminLogin, settingToken } from "../../reduxStore/Actions";
+import { useNavigate } from "react-router-dom";
+import { ErrorMessage, Field, Formik, Form } from "formik";
+import * as yup from "yup";
+import { IoEyeOutline } from "react-icons/io5";
+import { IoEyeOffOutline } from "react-icons/io5";
 
 function AdminLogin() {
   const dispatch = useDispatch();
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
   const adminData = useSelector((state) => state.admin.adminloginData);
   const token = adminData && adminData?.headers?.authorization;
   const navigateScreen = useNavigate();
   const err = useSelector((state) => state.admin.error);
-  const [showErrPopup, setShowErrPopup] = useState(false);
-  const [msg, setMsg] = useState("");
-  const [item, setItem] = useState();
+  const [showPassword, setShowPassword] = useState(false);
 
-  const loginRequest = () => {
-    const adminVal =
-      /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
-    if (!adminVal.test(email)) {
-      setShowErrPopup(true);
-      setMsg("Please Enter valid email");
-    } else if (password.length < 8) {
-      setShowErrPopup(true);
-      setMsg("Please Enter valid password");
-    } else {
-      const data = {
-        user: {
-          email: email,
-          password: password,
-        },
-      };
-      dispatch(adminLogin(data));
-      setEmail("");
-      setPassword("");
-      setMsg("");
-      setShowErrPopup(false);
-    }
-    setEmail("");
-    setPassword("");
+  const passWordHandler = () => {
+    setShowPassword(!showPassword);
   };
+
+  const loginRequest = (user) => {
+    const payload = {
+      user,
+    };
+    dispatch(adminLogin(payload));
+  };
+
   useEffect(() => {
     if (token) {
       navigateScreen("Customer List");
-      setShowErrPopup(false);
     }
   }, [token]);
 
@@ -68,74 +48,99 @@ function AdminLogin() {
 
   useEffect(() => {
     if (err?.response) {
-      setMsg(err?.response?.data);
-      setShowErrPopup(true);
-      setEmail("");
-      setPassword("");
+      alert(err?.response?.data);
     }
   }, [err]);
 
+  const initialValues = {
+    email: "",
+    password: "",
+  };
+  const validationSchema = yup.object({
+    email: yup
+      .string()
+      .email("Invalid email format")
+      .required("Mail is required"),
+    password: yup
+      .string()
+      .required("No password provided.")
+      .min(8, "Password is too short - should be 8 chars minimum."),
+  });
+
   return (
     <div style={styles.adminLoginView}>
-      <LoadingComponent />
-      <TextComponent
-        fontFamily="fantasy"
-        color="black"
-        text="Admin Login"
-        textAlign="center"
-        fontSize={20}
-        fontWeight="bolder"
-      />
+      <Formik
+        initialValues={initialValues}
+        onSubmit={(values, { resetForm }) => {
+          loginRequest(values);
+          resetForm({ name: "" });
+        }}
+        validationSchema={validationSchema}
+      >
+        {({ error, touches }) => (
+          <Form style={styles.formStyle}>
+            <label style={styles.adminLabel} htmlFor="email">
+              Email
+            </label>
+            <div className="form-control border-0  border-bottom border-dark bg-transparent">
+              <Field
+                name="email"
+                className="form-control border-0 shadow-none    bg-transparent text-dark "
+              />
+            </div>
+            <div style={styles.adminEmailErr}>
+              <ErrorMessage
+                name="email"
+                component={"div"}
+                className="text-danger"
+              />
+            </div>
+            <label style={styles.adminLabel} htmlFor="password">
+              Password
+            </label>
+            <div
+              style={styles.passwordView}
+              className="form-control border-0  border-bottom border-dark bg-transparent  "
+            >
+              <Field
+                name="password"
+                className="form-control border-0 shadow-none bg-transparent text-dark h-25 "
+              />
+              <div style={{ right: -10 }}>
+                {showPassword ? (
+                  <IoEyeOutline
+                    onClick={() => passWordHandler()}
+                    style={styles.iconStyle}
+                  />
+                ) : (
+                  <IoEyeOffOutline
+                    style={styles.iconStyle}
+                    onClick={() => passWordHandler()}
+                  />
+                )}
+              </div>
+            </div>
 
-      <div style={{ marginTop: 50 }}>
-        <InputAndLabel
-          color="black"
-          labelName="Admin Email"
-          type="text"
-          borderBottom="2px solid rgb(0, 0, 0)"
-          flexDirection="column"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-
-        <InputAndLabel
-          labelName="Admin Password"
-          type="text"
-          borderBottom="2px solid rgb(0, 0, 0)"
-          flexDirection="column"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          isPassward="true"
-          isPassword="true"
-        />
-      </div>
-      <div style={styles.btnView}>
-        {showErrPopup ? (
-          <ErrorComponent
-            onClick={loginRequest}
-            btnText="Login"
-            backgroundColor="grey"
-            color="black"
-            fontWeight="bolder"
-            modalOpen="true"
-            show={showErrPopup}
-            message={msg}
-            setShowErrPopup={setShowErrPopup}
-          />
-        ) : (
-          <ButtonComponent
-            onClick={loginRequest}
-            btnText="Login"
-            backgroundColor="grey"
-            color="black"
-            fontWeight="bolder"
-            modalOpen="true"
-          />
+            <div style={styles.adminPassErr}>
+              <ErrorMessage
+                name="password"
+                component={"div"}
+                className="text-danger"
+              />
+            </div>
+            <div style={{ ...styles.btnView, marginBottom: 20 }}>
+              <ButtonComponent
+                btnText="Login"
+                backgroundColor="grey"
+                color="black"
+                fontWeight="bolder"
+              />
+            </div>
+          </Form>
         )}
-      </div>
+      </Formik>
     </div>
   );
 }
-
 export default AdminLogin;
-<img src={"one.jpeg"} />;
+

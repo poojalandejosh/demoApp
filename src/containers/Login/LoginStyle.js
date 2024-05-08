@@ -10,7 +10,7 @@ export const styles = {
   },
   loginView: {
     width: "50%",
-    height: "50%",
+    height: "60%",
     backgroundColor: "#00000000",
     backgroundColor: "rgba(0, 0, 0, 0.5)",
     padding: 10,
@@ -45,10 +45,10 @@ export const styles = {
   },
   adminLoginView: {
     width: "50%",
-    height: "50%",
+    height: "60%",
     backgroundColor: "#00000000",
     backgroundColor: "rgba(255, 255, 255, 0.6)",
-    padding: 10,
+    padding: 15,
     borderRadius: 5,
   },
   btnView: {
@@ -66,4 +66,56 @@ export const styles = {
     fontFamily: "fantasy",
     fontSize: 16,
   },
+
+  formStyle: {
+    flexDirection: "column",
+    display: "flex",
+    marginLeft: 20,
+    marginRight: 20,
+    marginTop: 20,
+  },
+  emailLabel: {
+    marginBottom: 5,
+    marginTop: 5,
+    paddingLeft: 10,
+    color: "white",
+  },
+  adminLabelEmail: {
+    marginBottom: 5,
+    marginTop: 5,
+    paddingLeft: 10,
+  },
+  adminEmailErr: {
+    marginTop: 10,
+    marginBottom: 5,
+  },
+  adminPassErr: {
+    marginTop: 5,
+    marginBottom: 5,
+  },
+  adminLabel: {
+    marginBottom: 5,
+    marginTop: 5,
+    paddingLeft: 10,
+  },
+  passwordView: {
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "flex-end",
+  },
+  iconStyle: {
+    marginRight: 10,
+    color: "black",
+  },
+  userEmailErr: {
+    marginTop: 10,
+    marginBottom: 5,
+  },
+  userPassLabel: {
+    marginBottom: 5,
+    marginTop: 5,
+    paddingLeft: 10,
+    color: "white",
+  },
+  custEmailErrView: {},
 };
