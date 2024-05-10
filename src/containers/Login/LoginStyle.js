@@ -117,5 +117,4 @@ export const styles = {
     paddingLeft: 10,
     color: "white",
   },
-  custEmailErrView: {},
 };

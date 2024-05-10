@@ -1,15 +1,16 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { adminLogout, customerLogout } from "../reduxStore/Actions";
 import { IoMdLogOut } from "react-icons/io";
 import { styles } from "./NavStyle";
+
 function HorizontalNav() {
   const token = useSelector((state) => state.admin.token);
   const userToken = useSelector((state) => state.admin.userToken);
 
   return (
-    <div style={styles.container}>
+    <div role="mainNavView" style={styles.container}>
       <ul style={styles.unOrderList}>
         {token ? <AdminNav /> : userToken ? <CustomerNav /> : <LoginNav />}
       </ul>
@@ -19,9 +20,9 @@ function HorizontalNav() {
 
 export default HorizontalNav;
 
-const LoginNav = () => {
+export const LoginNav = () => {
   return (
-    <div>
+    <div role="loginNav">
       <li style={styles.loginView}>
         <Link style={styles.loginLink} to="/">
           Login
@@ -30,7 +31,7 @@ const LoginNav = () => {
     </div>
   );
 };
-const AdminNav = () => {
+export const AdminNav = () => {
   const dispatch = useDispatch();
 
   const logoutAdmin = () => {
@@ -39,7 +40,7 @@ const AdminNav = () => {
   };
   return (
     <>
-      <div style={styles.adminView}>
+      <div role="adminNavView" style={styles.adminView}>
         <li style={styles.paddingStyle}>
           <Link style={styles.linkStyle} to="/Customer List">
             Customer List
@@ -65,7 +66,7 @@ const AdminNav = () => {
   );
 };
 
-const CustomerNav = () => {
+export const CustomerNav = () => {
   const dispatch = useDispatch();
 
   const logoutcustomer = () => {
@@ -74,7 +75,7 @@ const CustomerNav = () => {
   };
   return (
     <>
-      <div style={styles.customerNavView}>
+      <div role="custNavView" style={styles.customerNavView}>
         <li style={styles.paddingStyle}>
           <Link style={styles.linkStyle} to="UserInfo">
             Profile

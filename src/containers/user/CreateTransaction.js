@@ -4,6 +4,7 @@ import ButtonComponent from "../../components/ButtonComponent";
 import TextComponent from "../../components/TextComponent";
 import { useDispatch, useSelector } from "react-redux";
 import {
+  clearTransaction,
   craeteTransactionRequest,
   getUserTransaction,
 } from "../../reduxStore/Actions";
@@ -13,6 +14,7 @@ import { createTransactionStyle } from "./UserStyles";
 function CreateTransaction() {
   const userData = useSelector((state) => state.admin.customerloginData);
   const createData = useSelector((state) => state.admin.createTransaction);
+  const err = useSelector((state) => state.admin.createTransactionErr);
   const token = useSelector((state) => state.admin.userToken);
   const dispatch = useDispatch();
   const [value, setValue] = React.useState("credit");
@@ -44,27 +46,51 @@ function CreateTransaction() {
         },
       };
       dispatch(craeteTransactionRequest(token, payload));
-      if (createData) {
-        alert("transaction created Successfully");
-        navigateScreen("/Transaction history");
-      }
     }
   };
+
+  useEffect(() => {
+    if (createData?.status == "201") {
+      alert("Transaction Created!!");
+      navigateScreen("/Transaction history");
+    }
+  }, [createData?.status == "201"]);
+
+  useEffect(() => {
+    if (err?.response) {
+      if (err?.response?.status == "404") {
+        alert("Data Not found ");
+      } else if (err?.response?.status == "422") {
+        alert("Transaction can not be proceed");
+      } else {
+        alert(err?.response?.data);
+      }
+    }
+  }, [err?.response]);
+
   useEffect(() => {
     dispatch(getUserTransaction(data?.id, token));
   }, [token]);
 
+  useEffect(() => {
+    return () => {
+      dispatch(clearTransaction());
+    };
+  }, []);
+
   return (
-    <div style={createTransactionStyle.container}>
-      <TextComponent
-        fontFamily="fantasy"
-        color="black"
-        text="Transaction"
-        textAlign="left"
-        fontSize={20}
-        fontWeight="bolder"
-        fontStyle="inherit"
-      />
+    <div role="transactionView" style={createTransactionStyle.container}>
+      <div style={{ marginTop: 30 }}>
+        <TextComponent
+          fontFamily="fantasy"
+          color="black"
+          text="Transaction"
+          textAlign="left"
+          fontSize={20}
+          fontWeight="bolder"
+          fontStyle="inherit"
+        />
+      </div>
 
       <div style={createTransactionStyle.transactionDropdown}>
         <TextComponent

@@ -1,7 +1,7 @@
 import { Admin } from "./Type";
 import axios from "axios";
 
-export const adminLoginRequest = () => {
+const adminLoginRequest = () => {
   return {
     type: Admin.ADMIN_LOGIN_REQUEST,
   };
@@ -16,6 +16,11 @@ export const adminLoginFailure = (err) => {
   return {
     type: Admin.ADMIN_LOGIN_FAILURE,
     payload: err,
+  };
+};
+export const clearAdminLoginData = () => {
+  return {
+    type: Admin.ADMIN_LOGIN_CLEAR,
   };
 };
 
@@ -70,6 +75,11 @@ export const transactionFailure = (err) => {
   return {
     type: Admin.TRANSACTION_FAILURE,
     payload: err,
+  };
+};
+export const clearTransaction = () => {
+  return {
+    type: Admin.CLEAR_TRANSACTION_DATA,
   };
 };
 
@@ -217,6 +227,11 @@ export const createUserFailure = (err) => {
     payload: err,
   };
 };
+export const clearCreateUserResponse = () => {
+  return {
+    type: Admin.CLEAR_CREATE_USER_RESPONSE,
+  };
+};
 export const clearErr = () => {
   return {
     type: Admin.CLEAR_ERR,
@@ -237,7 +252,7 @@ export const settingUserToken = (payload) => {
 
 export const adminLogin = (data) => {
   return (dispatch) => {
-    dispatch(adminLoginRequest);
+    dispatch(adminLoginRequest());
     axios
       .post("http://localhost:3000/login", data)
       .then((res) => {

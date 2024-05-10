@@ -15,22 +15,24 @@ import CreateUser from "../containers/admin/CreateUser";
 
 function RootNav() {
   return (
-    <Router>
-      <HorizontalNav />
-      <Routes>
-        <Route path="/" element={<EntryScreen />} />
-        <Route path="Customer Login" element={<CustomerLogin />} />
-        <Route path="Admin Login" element={<AdminLogin />} />
-        <Route path="/Customer List" element={<CustomerList />} />
-        <Route path="Transaction" element={<TransactionRecord />} />
-        <Route path="/CustomerInfo/:id" element={<CustomerInfo />} />
-        <Route path="/UserInfo" element={<UserInfo />} />
-        <Route path="/Update user" element={<UpdateUser />} />
-        <Route path="/Make Transaction" element={<CreateTransaction />} />
-        <Route path="/Transaction history" element={<TransactionHistory />} />
-        <Route path="/Create User" element={<CreateUser />} />
-      </Routes>
-    </Router>
+    <div role="rootNavView">
+      <Router>
+        <HorizontalNav />
+        <Routes>
+          <Route path="/" element={<EntryScreen />} />
+          <Route path="Customer Login" element={<CustomerLogin />} />
+          <Route path="Admin Login" element={<AdminLogin />} />
+          <Route path="/Customer List" element={<CustomerList />} />
+          <Route path="Transaction" element={<TransactionRecord />} />
+          <Route path="/CustomerInfo/:id" element={<CustomerInfo />} />
+          <Route path="/UserInfo" element={<UserInfo />} />
+          <Route path="/Update user" element={<UpdateUser />} />
+          <Route path="/Make Transaction" element={<CreateTransaction />} />
+          <Route path="/Transaction history" element={<TransactionHistory />} />
+          <Route path="/Create User" element={<CreateUser />} />
+        </Routes>
+      </Router>
+    </div>
   );
 }
 

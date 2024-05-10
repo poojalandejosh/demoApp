@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import InputAndLabel from "../../components/InputAndLabel";
 import { useDispatch, useSelector } from "react-redux";
-import { clearErr, getTransaction } from "../../reduxStore/Actions";
+import { getTransaction } from "../../reduxStore/Actions";
 import TransactionCard from "../../components/TransactionCard";
 import LoadingComponent from "../../components/LoadingComponent";
 import DataNotFoundComponent from "../../components/DataNotFoundComponent";
@@ -23,7 +23,7 @@ function TransactionRecord() {
   };
 
   return (
-    <div style={transactionRecordStyle.mainView}>
+    <div role="transactionView" style={transactionRecordStyle.mainView}>
       <LoadingComponent />
       <div style={transactionRecordStyle.componentView}>
         <InputAndLabel
@@ -40,7 +40,9 @@ function TransactionRecord() {
           <IoSearch onClick={searchHandler} size={20} />
         </div>
       </div>
-      {transactionData && <DataNotFoundComponent data={transactionData} />}
+      {transactionData?.length <= 0 && (
+        <DataNotFoundComponent data={transactionData} />
+      )}
 
       <div style={transactionRecordStyle.transactionView}>
         {transactionData &&

@@ -2,7 +2,11 @@ import React, { useEffect, useState } from "react";
 import { styles } from "./LoginStyle";
 import ButtonComponent from "../../components/ButtonComponent";
 import { useDispatch, useSelector } from "react-redux";
-import { adminLogin, settingToken } from "../../reduxStore/Actions";
+import {
+  adminLogin,
+  clearAdminLoginData,
+  settingToken,
+} from "../../reduxStore/Actions";
 import { useNavigate } from "react-router-dom";
 import { ErrorMessage, Field, Formik, Form } from "formik";
 import * as yup from "yup";
@@ -14,7 +18,8 @@ function AdminLogin() {
   const adminData = useSelector((state) => state.admin.adminloginData);
   const token = adminData && adminData?.headers?.authorization;
   const navigateScreen = useNavigate();
-  const err = useSelector((state) => state.admin.error);
+  const err = useSelector((state) => state.admin.adminloginDataErr);
+  const loading = useSelector((state) => state.admin.adminloginDataLoading);
   const [showPassword, setShowPassword] = useState(false);
 
   const passWordHandler = () => {
@@ -52,6 +57,12 @@ function AdminLogin() {
     }
   }, [err]);
 
+  useEffect(() => {
+    return () => {
+      dispatch(clearAdminLoginData());
+    };
+  }, []);
+
   const initialValues = {
     email: "",
     password: "",
@@ -68,7 +79,7 @@ function AdminLogin() {
   });
 
   return (
-    <div style={styles.adminLoginView}>
+    <div role="adminRoot" style={styles.adminLoginView}>
       <Formik
         initialValues={initialValues}
         onSubmit={(values, { resetForm }) => {

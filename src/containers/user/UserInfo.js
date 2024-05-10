@@ -22,7 +22,7 @@ const UserInfo = () => {
     }
   }, [token]);
   return (
-    <div style={userInfoStyle.container}>
+    <div role="userInfoView" style={userInfoStyle.container}>
       <div style={userInfoStyle.titleStyleView}>
         <TextComponent
           fontFamily="fantasy"

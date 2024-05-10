@@ -1,19 +1,50 @@
 import { Admin } from "./Type";
 
 const initialState = {
+  singleTranLoading: "",
   singleTran: [],
+  singleTranErr: "",
+
+  adminloginDataLoading: "",
   adminloginData: JSON.parse(window.localStorage.getItem("adminData")),
+  adminloginDataErr: [],
+
+  customerloginDataLoading: "",
   customerloginData: JSON.parse(window.localStorage.getItem("userData")),
+  customerloginDataErr: [],
+
+  customerListLoading: "",
   customerList: [],
+  customerListErr: [],
+
+  singleUserDataLoading: "",
   singleUserData: JSON.parse(window.localStorage.getItem("userInfo")),
+  singleUserDataErr: [],
+
+  transactionsDataLoading: "",
   transactionsData: [],
+  transactionsDataErr: [],
+
   loading: false,
   error: [],
   loginRole: "",
+
+  userDeletedLoading: "",
   userDeleted: [],
+  userDeletedErr: "",
+
+  createTransactionLoading: "",
   createTransaction: [],
+  createTransactionErr: [],
+
+  allTransactionLoading: "",
   allTransaction: [],
+  allTransactionErr: [],
+
+  createUserResLoading: "",
   createUserRes: [],
+  createUserResErr: [],
+
   token: JSON.parse(window.localStorage.getItem("key")),
   userToken: JSON.parse(window.localStorage.getItem("userkey")),
 };
@@ -23,41 +54,43 @@ export const AdminReducer = (state = initialState, action) => {
     case Admin.ADMIN_LOGIN_REQUEST: {
       return {
         ...state,
-        loading: true,
+        adminloginDataLoading: true,
       };
     }
     case Admin.ADMIN_LOGIN_SUCCESS: {
       return {
         ...state,
         adminloginData: action.payload,
-        loading: false,
+        adminloginDataErr: [],
+        adminloginDataLoading: false,
       };
     }
     case Admin.ADMIN_LOGIN_FAILURE: {
       return {
         ...state,
-        error: action.payload,
-        loading: false,
+        adminloginDataErr: action.payload,
+        adminloginDataLoading: false,
       };
     }
     case Admin.CUSTOMER_LOGIN_REQUEST: {
       return {
         ...state,
-        loading: true,
+        customerloginDataLoading: true,
       };
     }
     case Admin.CUSTOMER_LOGIN_SUCCESS: {
       return {
         ...state,
         customerloginData: action.payload,
-        loading: false,
+        customerloginDataErr: [],
+        customerloginDataLoading: false,
       };
     }
     case Admin.CUSTOMER_LOGIN_FAILURE: {
       return {
         ...state,
-        error: action.payload,
-        loading: false,
+        customerloginDataErr: action.payload,
+        customerloginDataLoading: false,
       };
     }
     case Admin.ALL_TRANSACTION_REQUEST: {
@@ -83,7 +116,7 @@ export const AdminReducer = (state = initialState, action) => {
     case Admin.CUSTOMER_LIST_REQUEST: {
       return {
         ...state,
-        loading: true,
+        customerListLoading: true,
       };
     }
     case Admin.CUSTOMER_LIST_SUCCESS: {
@@ -96,14 +129,14 @@ export const AdminReducer = (state = initialState, action) => {
     case Admin.CUSTOMER_LIST_FAILURE: {
       return {
         ...state,
-        error: action.payload,
-        loading: false,
+        customerListErr: action.payload,
+        customerListLoading: false,
       };
     }
     case Admin.SINGLE_CUSTOMER_REQUEST: {
       return {
         ...state,
-        loading: true,
+        singleUserDataLoading: true,
       };
     }
     case Admin.SINGLE_CUSTOMER_SUCCESS: {
@@ -116,28 +149,28 @@ export const AdminReducer = (state = initialState, action) => {
     case Admin.SINGLE_CUSTOMER_FAILURE: {
       return {
         ...state,
-        error: action.payload,
-        loading: false,
+        singleUserDataErr: action.payload,
+        singleUserDataLoading: false,
       };
     }
     case Admin.GET_USER_TRANSACTION_REQUEST: {
       return {
         ...state,
-        loading: true,
+        singleTranLoading: true,
       };
     }
     case Admin.GET_USER_TRANSACTION_SUCCESS: {
       return {
         ...state,
         singleTran: action.payload,
-        loading: false,
+        singleTranLoading: false,
       };
     }
     case Admin.GET_USER_TRANSACTION_FAILURE: {
       return {
         ...state,
-        error: action.payload,
-        loading: false,
+        singleTranErr: action.payload,
+        singleTranLoading: false,
       };
     }
 
@@ -185,7 +218,7 @@ export const AdminReducer = (state = initialState, action) => {
     case Admin.CREATE_TRANSACTION_REQUEST: {
       return {
         ...state,
-        loading: true,
+        createTransactionLoading: true,
       };
     }
     case Admin.CREATE_TRANSACTION_SUCCESS: {
@@ -198,8 +231,16 @@ export const AdminReducer = (state = initialState, action) => {
     case Admin.CREATE_TRANSACTION_FAILURE: {
       return {
         ...state,
-        error: action.payload,
-        loading: false,
+        createTransactionErr: action.payload,
+        createTransactionLoading: false,
+      };
+    }
+    case Admin.CLEAR_TRANSACTION_DATA: {
+      return {
+        ...state,
+        createTransactionErr: [],
+        createTransaction: action.payload,
+        createTransactionLoading: false,
       };
     }
     case Admin.UPDATE_USER_INFO_REQUEST: {
@@ -224,21 +265,29 @@ export const AdminReducer = (state = initialState, action) => {
     case Admin.CREATE_USER_REQUEST: {
       return {
         ...state,
-        loading: true,
+        createUserResLoading: true,
       };
     }
     case Admin.CREATE_USER_SUCCESS: {
       return {
         ...state,
         createUserRes: action.payload,
-        loading: false,
+        createUserResLoading: false,
       };
     }
     case Admin.CREATE_USER_FAILURE: {
       return {
         ...state,
-        error: action.payload,
-        loading: false,
+        createUserResErr: action.payload,
+        createUserResLoading: false,
+      };
+    }
+    case Admin.CLEAR_CREATE_USER_RESPONSE: {
+      return {
+        ...state,
+        createUserResLoading: false,
+        createUserResErr: [],
+        createUserRes: [],
       };
     }
     case Admin.SET_TOKEN: {
@@ -273,38 +322,78 @@ export const AdminReducer = (state = initialState, action) => {
     }
     case Admin.ADMIN_LOGOUT: {
       return {
+        singleTranLoading: "",
         singleTran: [],
+        singleTranErr: "",
+        adminloginDataLoading: "",
         adminloginData: [],
+        adminloginDataErr: [],
+        customerloginDataLoading: "",
         customerloginData: [],
+        customerloginDataErr: [],
+        customerListLoading: "",
         customerList: [],
+        customerListErr: [],
+        singleUserDataLoading: "",
         singleUserData: [],
+        singleUserDataErr: [],
+        transactionsDataLoading: "",
         transactionsData: [],
+        transactionsDataErr: [],
         loading: false,
         error: [],
         loginRole: "",
+        userDeletedLoading: "",
         userDeleted: [],
+        userDeletedErr: "",
+        createTransactionLoading: "",
         createTransaction: [],
+        createTransactionErr: [],
+        allTransactionLoading: "",
         allTransaction: [],
+        allTransactionErr: [],
+        createUserResLoading: "",
         createUserRes: [],
+        createUserResErr: [],
         token: "",
         userToken: "",
       };
     }
     case Admin.CUSTOMER_LOGOUT: {
       return {
+        singleTranLoading: "",
         singleTran: [],
+        singleTranErr: "",
+        adminloginDataLoading: "",
         adminloginData: [],
+        adminloginDataErr: [],
+        customerloginDataLoading: "",
         customerloginData: [],
+        customerloginDataErr: [],
+        customerListLoading: "",
         customerList: [],
+        customerListErr: [],
+        singleUserDataLoading: "",
         singleUserData: [],
+        singleUserDataErr: [],
+        transactionsDataLoading: "",
         transactionsData: [],
+        transactionsDataErr: [],
         loading: false,
         error: [],
         loginRole: "",
+        userDeletedLoading: "",
         userDeleted: [],
+        userDeletedErr: "",
+        createTransactionLoading: "",
         createTransaction: [],
+        createTransactionErr: [],
+        allTransactionLoading: "",
         allTransaction: [],
+        allTransactionErr: [],
+        createUserResLoading: "",
         createUserRes: [],
+        createUserResErr: [],
         token: "",
         userToken: "",
       };

@@ -1,14 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import {
-  clearErr,
+  clearCreateUserResponse,
   craeteUserAction,
-  getSingleCustomer,
 } from "../../reduxStore/Actions";
 import { useDispatch, useSelector } from "react-redux";
 import TextComponent from "../../components/TextComponent";
-import InputAndLabel from "../../components/InputAndLabel";
-import { createUserStyle, customerInfoStyle } from "./AdminStyle";
+import { createUserStyle } from "./AdminStyle";
 import ButtonComponent from "../../components/ButtonComponent";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import * as yup from "yup";
@@ -17,7 +15,11 @@ import { styles } from "../Login/LoginStyle";
 function CreateUser(props) {
   const { id } = useParams();
   const dispatch = useDispatch();
+  const createUserRes = useSelector((state) => state.admin.createUserRes);
   const token = useSelector((state) => state.admin.token);
+  const err = useSelector((state) => state.admin.createUserResErr);
+  const loading = useSelector((state) => state.admin.createUserResLoading);
+
   const navigateScreen = useNavigate();
 
   const initialValues = {
@@ -62,11 +64,34 @@ function CreateUser(props) {
       user,
     };
     dispatch(craeteUserAction(token, payload));
-    navigateScreen("/Customer List");
   };
 
+  useEffect(() => {
+    if (createUserRes?.message === "User created sucessfully") {
+      alert("user created successfully!!");
+      navigateScreen("/Customer List");
+    }
+  }, [createUserRes?.message]);
+
+  useEffect(() => {
+    if (err?.response) {
+      if (err?.response?.status == "404") {
+        alert("Data Not found ");
+      } else if (err?.response?.status == "422") {
+        alert("user already exist");
+      } else {
+        alert(err?.response?.data);
+      }
+    }
+  }, [err]);
+  useEffect(() => {
+    return () => {
+      dispatch(clearCreateUserResponse());
+    };
+  }, []);
+
   return (
-    <div style={createUserStyle.container}>
+    <div role="rootView" style={createUserStyle.container}>
       <div style={createUserStyle.title}>
         <TextComponent
           fontFamily="fantasy"

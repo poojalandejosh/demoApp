@@ -1,17 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { styles } from "./LoginStyle";
 import CustomerLogin from "./CustomerLogin";
 import AdminLogin from "./AdminLogin";
 import backgroundCust from "../../assets/images/bankBackground.jpg";
 import backgroundAdmin from "../../assets/images/admin.jpg";
 import TextComponent from "../../components/TextComponent";
-import { useDispatch } from "react-redux";
 
 function EntryScreen() {
   const [isCustomer, setIsCustomer] = useState(false);
   const [isAdmin, setIsAdmin] = useState(false);
   const [showAdminCustPart, setShowAdminCustPart] = useState(true);
-  const dispatch = useDispatch();
 
   const adminSectionClick = () => {
     setIsAdmin(true);
@@ -24,6 +22,7 @@ function EntryScreen() {
 
   return (
     <div
+      role="entryView"
       style={{
         ...styles.container,
         backgroundImage: isAdmin
@@ -101,7 +100,6 @@ function EntryScreen() {
       )}
       {isCustomer ? <CustomerLogin /> : isAdmin ? <AdminLogin /> : null}
     </div>
-    // </div>
   );
 }
 

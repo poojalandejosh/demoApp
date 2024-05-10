@@ -2,14 +2,9 @@ import React, { useEffect, useState } from "react";
 import TextComponent from "../../components/TextComponent";
 import InputAndLabel from "../../components/InputAndLabel";
 import ButtonComponent from "../../components/ButtonComponent";
-import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import {
-  clearErr,
-  getSingleCustomer,
-  updateUserInfo,
-} from "../../reduxStore/Actions";
+import { updateUserInfo } from "../../reduxStore/Actions";
 import { updateUserStyle } from "./UserStyles";
 
 function UpdateUser(props) {
@@ -70,7 +65,7 @@ function UpdateUser(props) {
   };
 
   return (
-    <div style={updateUserStyle.container}>
+    <div role="updateDataView" style={updateUserStyle.container}>
       <TextComponent
         fontFamily="fantasy"
         color="black"

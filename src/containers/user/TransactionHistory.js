@@ -17,7 +17,7 @@ function TransactionHistory() {
   }, []);
 
   return (
-    <div>
+    <div role="tranHistoryRole">
       <div style={transactionHistoryStyle.componentView}>
         <div style={transactionHistoryStyle.cardView}>
           <CustomerCard data={userData?.data?.data} showBtn="false" />

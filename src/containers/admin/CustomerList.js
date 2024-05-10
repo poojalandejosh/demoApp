@@ -11,12 +11,23 @@ import { transactionRecordStyle } from "./AdminStyle";
 function CustomerList() {
   const dispatch = useDispatch();
   const customerList = useSelector((state) => state.admin.customerList);
+  const loading = useSelector((state) => state.admin.customerListLoading);
+  const err = useSelector((state) => state.admin.customerListErr);
+
   const [searchData, setSearchData] = useState(customerList);
   const [inputVal, setInputVal] = useState("");
 
   useEffect(() => {
     setSearchData(customerList);
   }, [customerList]);
+
+  useEffect(() => {
+    if (err?.lenghth) {
+      if (err?.response?.status == "401") {
+        alert("Unauthorized user");
+      }
+    }
+  }, [err]);
 
   const token = useSelector((state) => state.admin.token);
 
@@ -30,7 +41,7 @@ function CustomerList() {
     dispatch(deleteUser(ind));
   };
   const searchFun = () => {
-    var dataSearch = customerList?.filter((item) => {
+    var dataSearch = customerList?.filter?.((item) => {
       return item?.first_name?.toLowerCase().includes(inputVal);
     });
     setSearchData(dataSearch);
@@ -41,7 +52,7 @@ function CustomerList() {
   }, [inputVal]);
 
   return (
-    <div style={{ margin: 20 }}>
+    <div role="custListView" style={{ margin: 20 }}>
       <LoadingComponent />
 
       <div style={transactionRecordStyle.componentView}>
@@ -66,10 +77,13 @@ function CustomerList() {
           fontWeight="bolder"
         />
       ) : null}
-      <DataNotFoundComponent data={searchData} />
+
+      {searchData?.length <= 0 && err?.response && (
+        <DataNotFoundComponent data={searchData} />
+      )}
 
       {searchData &&
-        searchData?.map((data, ind) => {
+        searchData?.map?.((data, ind) => {
           return (
             <CustomerCard
               key={data?.id}

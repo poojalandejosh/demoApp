@@ -12,8 +12,9 @@ import { IoEyeOffOutline } from "react-icons/io5";
 function CustomerLogin() {
   const dispatch = useDispatch();
   const navigateScreen = useNavigate();
-  const err = useSelector((state) => state.admin.error);
+  const err = useSelector((state) => state.admin.customerloginDataErr);
   const [showPassword, setShowPassword] = useState(false);
+  const loading = useSelector((state) => state.admin.customerloginDataLoading);
 
   const passWordHandler = () => {
     setShowPassword(!showPassword);
@@ -74,7 +75,7 @@ function CustomerLogin() {
   });
 
   return (
-    <div style={styles.loginView}>
+    <div role="customerRootView" style={styles.loginView}>
       <Formik
         initialValues={initialValues}
         onSubmit={(values, { resetForm }) => {
