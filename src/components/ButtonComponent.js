@@ -11,6 +11,7 @@ function ButtonComponent({
 }) {
   return (
     <button
+      role="btnForScreen"
       onClick={onClick}
       style={{ ...styles.loginBtnStyle, backgroundColor, color, fontWeight }}
     >

@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
 import CustomerCard from "../../components/CustomerCard";
-import TextComponent from "../../components/TextComponent";
 import { deleteUser, getCustomerList } from "../../reduxStore/Actions";
 import { useDispatch, useSelector } from "react-redux";
 import LoadingComponent from "../../components/LoadingComponent";
 import DataNotFoundComponent from "../../components/DataNotFoundComponent";
 import InputAndLabel from "../../components/InputAndLabel";
 import { transactionRecordStyle } from "./AdminStyle";
+import TextComponent from "../../components/TextComponent";
 
 function CustomerList() {
   const dispatch = useDispatch();

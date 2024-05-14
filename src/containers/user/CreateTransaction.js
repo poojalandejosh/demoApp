@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import InputAndLabel from "../../components/InputAndLabel";
 import ButtonComponent from "../../components/ButtonComponent";
-import TextComponent from "../../components/TextComponent";
 import { useDispatch, useSelector } from "react-redux";
 import {
   clearTransaction,
@@ -10,6 +9,7 @@ import {
 } from "../../reduxStore/Actions";
 import { useNavigate } from "react-router-dom";
 import { createTransactionStyle } from "./UserStyles";
+import TextComponent from "../../components/TextComponent";
 
 function CreateTransaction() {
   const userData = useSelector((state) => state.admin.customerloginData);

@@ -1,20 +1,20 @@
-import { render, screen } from "@testing-library/react";
-import CustomerInfo from "./CustomerInfo";
+import { render } from "@testing-library/react";
+import TransactionCard from "./TransactionCard";
 import { Provider } from "react-redux";
-import { store } from "../../reduxStore/Store";
+import { store } from "../reduxStore/Store";
 import { MemoryRouter } from "react-router-dom";
 
-describe("renders Create user screen", () => {
-  it('create user"', () => {
+describe("renders Loading component ", () => {
+  it("Loading component", () => {
     const { getByRole } = render(
       <Provider store={store}>
         <MemoryRouter>
-          <CustomerInfo />
+          <TransactionCard />
         </MemoryRouter>
       </Provider>
     );
 
-    expect(getByRole("custInfoView")).not.toBeNull();
+    expect(getByRole("tranCardView")).not.toBeNull();
   });
 });
 const mockUsedNavigate = jest.fn();

@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import TextComponent from "../../components/TextComponent";
 import { Link } from "react-router-dom";
 import { getSingleCustomer } from "../../reduxStore/Actions";
 import { userInfoStyle } from "./UserStyles";
+import TextComponent from "../../components/TextComponent";
 
 const UserInfo = () => {
   const userData = useSelector((state) => state.admin.customerloginData);

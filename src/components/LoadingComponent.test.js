@@ -1,20 +1,20 @@
-import { render, screen } from "@testing-library/react";
-import CustomerInfo from "./CustomerInfo";
+import { render } from "@testing-library/react";
+import LoadingComponent from "./LoadingComponent";
 import { Provider } from "react-redux";
-import { store } from "../../reduxStore/Store";
+import { store } from "../reduxStore/Store";
 import { MemoryRouter } from "react-router-dom";
 
-describe("renders Create user screen", () => {
-  it('create user"', () => {
+describe("renders Loading component ", () => {
+  it("Loading component", () => {
     const { getByRole } = render(
       <Provider store={store}>
         <MemoryRouter>
-          <CustomerInfo />
+          <LoadingComponent />
         </MemoryRouter>
       </Provider>
     );
 
-    expect(getByRole("custInfoView")).not.toBeNull();
+    expect(getByRole("loadingView")).not.toBeNull();
   });
 });
 const mockUsedNavigate = jest.fn();

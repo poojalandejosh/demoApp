@@ -5,12 +5,12 @@ import {
   craeteUserAction,
 } from "../../reduxStore/Actions";
 import { useDispatch, useSelector } from "react-redux";
-import TextComponent from "../../components/TextComponent";
 import { createUserStyle } from "./AdminStyle";
 import ButtonComponent from "../../components/ButtonComponent";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import * as yup from "yup";
 import { styles } from "../Login/LoginStyle";
+import TextComponent from "../../components/TextComponent";
 
 function CreateUser(props) {
   const { id } = useParams();

@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
-import TextComponent from "../../components/TextComponent";
 import InputAndLabel from "../../components/InputAndLabel";
 import ButtonComponent from "../../components/ButtonComponent";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { updateUserInfo } from "../../reduxStore/Actions";
 import { updateUserStyle } from "./UserStyles";
+import TextComponent from "../../components/TextComponent";
 
 function UpdateUser(props) {
   const userData = useSelector((state) => state.admin.customerloginData);

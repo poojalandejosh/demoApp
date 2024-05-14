@@ -1,16 +1,16 @@
 import React from "react";
-import TextComponent from "./TextComponent";
 import { transactionCardStyle } from "./ComponentStyle";
+import TextComponent from "./TextComponent";
 
 function TransactionCard({ data }) {
   return (
-    <div style={transactionCardStyle.mainView}>
+    <div role="tranCardView" style={transactionCardStyle.mainView}>
       <div style={transactionCardStyle.firstRow}>
         <div style={transactionCardStyle.accountNumberView}>
           <TextComponent
             fontFamily="cursive"
             color="black"
-            text={`Account Number : ${data.account_id}`}
+            text={`Account Number : ${data?.account_id}`}
             textAlign="start"
           />
         </div>
@@ -18,7 +18,7 @@ function TransactionCard({ data }) {
           <TextComponent
             fontFamily="cursive"
             color="black"
-            text={`Amount ${data.transaction_type} : ${data.amount}`}
+            text={`Amount ${data?.transaction_type} : ${data?.amount}`}
             textAlign="start"
           />
         </div>
@@ -28,7 +28,7 @@ function TransactionCard({ data }) {
           <TextComponent
             fontFamily="cursive"
             color="black"
-            text={`Available Amount: ${data.balance}`}
+            text={`Available Amount: ${data?.balance}`}
             textAlign="start"
           />
         </div>
@@ -36,7 +36,7 @@ function TransactionCard({ data }) {
           <TextComponent
             fontFamily="cursive"
             color="black"
-            text={`Transaction Details: ${data.details}`}
+            text={`Transaction Details: ${data?.details}`}
             textAlign="start"
           />
         </div>

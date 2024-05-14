@@ -23,6 +23,7 @@ function InputAndLabel({
 
   return (
     <div
+      role="inputView"
       style={{
         ...styles.inputAndLabelView,
         borderBottom,
@@ -45,7 +46,7 @@ function InputAndLabel({
           <input
             type={showPassword ? type : "password"}
             style={{ ...styles.inputStyle, color, width }}
-            value={value}
+            defaultValue={value}
             onChange={onChange}
             pattern={isPassward ? "(?=.*d)(?=.*[a-z])(?=.*[A-Z]).{8,}" : "null"}
           />
@@ -65,7 +66,7 @@ function InputAndLabel({
         <input
           type={type}
           style={{ ...styles.inputStyle, color, width }}
-          value={value}
+          defaultValue={value}
           onChange={onChange}
         />
       )}

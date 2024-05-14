@@ -5,7 +5,7 @@ const LoadingComponent = () => {
   const loading = useSelector((state) => state.admin.loading);
 
   return (
-    <div>
+    <div role="loadingView">
       {loading && (
         <div>
           {

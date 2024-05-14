@@ -1,6 +1,6 @@
 import React from "react";
 
-function TextComponent({
+const TextComponent = ({
   color,
   fontSize,
   text,
@@ -9,7 +9,7 @@ function TextComponent({
   fontWeight,
   fontStyle,
   textSizeAdjust,
-}) {
+}) => {
   return (
     <p
       style={{
@@ -25,6 +25,6 @@ function TextComponent({
       {text}
     </p>
   );
-}
+};
 
 export default TextComponent;

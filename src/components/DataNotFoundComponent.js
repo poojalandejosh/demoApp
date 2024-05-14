@@ -1,14 +1,14 @@
 import React from "react";
 import noData from "../assets/images/noData.jpeg";
-import TextComponent from "./TextComponent";
 import { notFoundStyles } from "./ComponentStyle";
 import { useSelector } from "react-redux";
+import TextComponent from "./TextComponent";
 
 const DataNotFoundComponent = () => {
   const error = useSelector((state) => state.admin.error);
 
   return (
-    <div>
+    <div role="dataNotFoundView">
       <div style={notFoundStyles.componentView}>
         <img style={notFoundStyles.imgStyle} src={noData} alt="loading..." />
         <TextComponent

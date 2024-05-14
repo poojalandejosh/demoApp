@@ -1,11 +1,11 @@
 import React from "react";
-import TextComponent from "./TextComponent";
 import { Link } from "react-router-dom";
 import { custCardstyles } from "./ComponentStyle";
+import TextComponent from "./TextComponent";
 
 function CustomerCard({ data, onClick, showBtn, key }) {
   return (
-    <div style={custCardstyles.mainView} key={key}>
+    <div role="cardView" style={custCardstyles.mainView} key={key}>
       <div style={custCardstyles.componentView}>
         <TextComponent
           fontFamily="fantasy"

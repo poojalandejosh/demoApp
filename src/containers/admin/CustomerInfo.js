@@ -2,10 +2,10 @@ import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { getSingleCustomer } from "../../reduxStore/Actions";
 import { useDispatch, useSelector } from "react-redux";
-import TextComponent from "../../components/TextComponent";
 import InputAndLabel from "../../components/InputAndLabel";
 import { customerInfoStyle } from "./AdminStyle";
 import DataNotFoundComponent from "../../components/DataNotFoundComponent";
+import TextComponent from "../../components/TextComponent";
 
 function CustomerInfo(props) {
   const { id } = useParams();
